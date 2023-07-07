@@ -9,6 +9,14 @@ module.exports = (error, req, res, next) => {
       status = 400;
       message = error.errors[0].message;
       break;
+    case "Invalid Email/Password":
+      status = 400;
+      message = "Invalid Email/Password";
+      break;
+    case "Email/Password Required":
+      status = 400;
+      message = "Email/Password Required";
+      break;
     default:
       message = "Internal Server Error";
       status = 500;
