@@ -23,14 +23,13 @@ class UserController {
       });
       if (!user) throw { name: "Invalid Email/Password" };
       const isPassword = comparePassword(password, user.password);
-      if (!isPassword) throw { name: "Invalid Password" };
+      if (!isPassword) throw { name: "Invalid Email/Password" };
       const payload = {
         id: user.id,
       };
       const access_token = signToken(payload);
       res.status(200).json({ access_token: access_token });
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
