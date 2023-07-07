@@ -1,8 +1,29 @@
-<script></script>
+<script>
+import TableOrder from "../components/teableOrder.vue";
+import { mapActions, mapState } from "pinia";
+import { useOrderStore } from "../stores/order";
+import FormOrder from "../components/formOrder.vue";
+export default {
+  components: {
+    TableOrder,
+    FormOrder,
+  },
+  computed: {
+    ...mapState(useOrderStore, ["orders"]),
+  },
+  methods: {
+    ...mapActions(useOrderStore, ["fetchOrder"]),
+  },
+  created() {
+    this.fetchOrder();
+  },
+};
+</script>
 <template>
   <section class="container mx-auto p-6 font-mono">
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
+        <FormOrder />
         <table class="w-full">
           <thead>
             <tr
@@ -14,7 +35,14 @@
               <th class="px-4 py-3">Price</th>
             </tr>
           </thead>
-          <tbody class="bg-white"></tbody>
+          <tbody class="bg-white">
+            <TableOrder
+              v-for="(order, index) in orders"
+              :key="order.id"
+              :order="order"
+              :index="index"
+            />
+          </tbody>
         </table>
       </div>
     </div>
