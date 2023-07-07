@@ -29,6 +29,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.name === "home" && !localStorage.access_token) {
     next({ name: "login" });
+  } else if (to.name === "login" && localStorage.access_token) {
+    next({ name: "home" });
+  } else if (to.name === "register" && localStorage.access_token) {
+    next({ name: "home" });
   } else {
     next();
   }

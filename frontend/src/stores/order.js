@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
+import { toast } from "vue3-toastify";
 import axios from "axios";
 import BaseUrl from "../components/baseUrl";
+import "vue3-toastify/dist/index.css";
 
 export const useOrderStore = defineStore("order", {
   state: () => ({
@@ -24,9 +26,20 @@ export const useOrderStore = defineStore("order", {
         (inputLogin.email = ""), (inputLogin.password = "");
         localStorage.setItem("access_token", data.access_token);
         this.access_token = data.access_token;
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Succes Login",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         this.router.push({ name: "home" });
       } catch (error) {
-        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.response.data.message}`,
+        });
       }
     },
     async register(inputRegister) {
@@ -37,9 +50,20 @@ export const useOrderStore = defineStore("order", {
           data: inputRegister,
         });
         (inputRegister.email = ""), (inputRegister.password = "");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Succes Register",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         this.router.push({ name: "login" });
       } catch (error) {
-        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.response.data.message}`,
+        });
       }
     },
     async fetchOrder() {
@@ -52,9 +76,12 @@ export const useOrderStore = defineStore("order", {
           },
         });
         this.orders = data;
-        console.log(data);
       } catch (error) {
-        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.response.data.message}`,
+        });
       }
     },
     async createOrder(inputOrder) {
@@ -70,9 +97,20 @@ export const useOrderStore = defineStore("order", {
         (inputOrder.title = ""),
           (inputOrder.quantity = ""),
           (inputOrder.price = "");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Succes Register",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         this.fetchOrder();
       } catch (error) {
-        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.response.data.message}`,
+        });
       }
     },
   },

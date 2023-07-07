@@ -1,5 +1,7 @@
 import { createApp, markRaw } from "vue";
 import { createPinia } from "pinia";
+import ToastPlugin from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-bootstrap.css";
 import "./style.css";
 import App from "./App.vue";
 import router from "./router";
@@ -13,5 +15,6 @@ pinia.use(({ store }) => {
 
 app.use(pinia);
 app.use(router);
+app.use(ToastPlugin);
 
 app.mount("#app");

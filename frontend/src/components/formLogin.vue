@@ -79,10 +79,10 @@ export default {
 
       <p class="mt-10 text-center text-sm text-gray-500">
         Not a member?
-        <a
-          href="#"
+        <router-link
+          to="/register"
           class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-          >Register</a
+          >Create an account</router-link
         >
       </p>
     </div>
