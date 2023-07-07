@@ -7,7 +7,7 @@ class UserController {
       const user = await User.create({ email, password });
       res.status(201).json({ message: "Succes Register" });
     } catch (error) {
-      next();
+      next(error);
     }
   }
 }
