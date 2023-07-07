@@ -10,6 +10,14 @@ class OrderController {
       next(error);
     }
   }
+  static async GetOrder(req, res, next) {
+    try {
+      const order = await Order.findAll();
+      res.status(200).json(order);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = OrderController;
