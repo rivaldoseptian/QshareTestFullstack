@@ -17,6 +17,11 @@ module.exports = (error, req, res, next) => {
       status = 400;
       message = "Email/Password Required";
       break;
+    case "Unauthenticated":
+    case "JsonWebTokenError":
+      status = 401;
+      message = "Unauthenticated";
+      break;
     default:
       message = "Internal Server Error";
       status = 500;

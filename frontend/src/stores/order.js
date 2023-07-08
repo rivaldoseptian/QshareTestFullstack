@@ -100,7 +100,7 @@ export const useOrderStore = defineStore("order", {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Succes Register",
+          title: "Succes Create Order",
           showConfirmButton: false,
           timer: 1500,
         });
